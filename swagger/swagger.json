@@ -1,0 +1,668 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Core API is used for auth and registration",
+    "version": "1.0.0",
+    "title": "Core API"
+  },
+  "basePath": "/api/v1/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/config": {
+      "get": {
+        "tags": [
+          "Get config"
+        ],
+        "summary": "Get configuration for BFL",
+        "operationId": "config",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "countryId",
+            "description": "Country id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "storeId",
+            "description": "Brand id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "language",
+            "description": "Language of user, For now possible values are (english or arabic)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "section",
+            "description": "Specific section from config that you want to get e.g uspContent",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Config"
+            }
+          }
+        }
+      }
+    },
+    "/catalog": {
+      "get": {
+        "tags": [
+          "Get All Catalog pages"
+        ],
+        "summary": "Get All Catalog pages",
+        "operationId": "catalog",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "countryId",
+            "description": "Country id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "storeId",
+            "description": "Store id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Catalog"
+            }
+          }
+        }
+      }
+    },
+    "/catalog/add": {
+      "post": {
+        "tags": [
+          "Create a Catalog page"
+        ],
+        "summary": "Add a new Catalog page",
+        "operationId": "catalog",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "catalogDetails",
+            "description": "Object of complete catalog",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Catalog"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Json for add catalog",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Catalog"
+            }
+          }
+        }
+      }
+    },
+    "/catalog/{id}": {
+      "put": {
+        "tags": [
+          "Update Catalog page"
+        ],
+        "summary": "Update existing Catalog page",
+        "operationId": "catalog",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Catalog page id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "catalogDetails",
+            "description": "Object of complete catalog",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Catalog"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Json for add catalog",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Catalog"
+            }
+          }
+        }
+      }
+    },
+    "/static": {
+      "get": {
+        "tags": [
+          "Get All Static pages"
+        ],
+        "summary": "Get All Static pages",
+        "operationId": "static",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "countryId",
+            "description": "Country id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "storeId",
+            "description": "Store id for user",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Static"
+            }
+          }
+        }
+      }
+    },
+    "/static/add": {
+      "post": {
+        "tags": [
+          "Create a Static page"
+        ],
+        "summary": "Add a new Static page",
+        "operationId": "static",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "staticDetails",
+            "description": "Object of complete static",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Static"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Json for add static",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Static"
+            }
+          }
+        }
+      }
+    },
+    "/static/{id}": {
+      "put": {
+        "tags": [
+          "Update Static page"
+        ],
+        "summary": "Update existing Static page",
+        "operationId": "static",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Static page id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "staticDetails",
+            "description": "Object of complete static",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Static"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Json for update static",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Static"
+            }
+          }
+        }
+      }
+    },
+    "/mega-menu": {
+      "put": {
+        "tags": [
+          "Update mega menu page"
+        ],
+        "summary": "Update existing as well as insert new mega menu record",
+        "operationId": "mega-menu",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-access-token",
+            "description": "Enter authorization token that you got from authenticate API",
+            "required": true
+          },
+          {
+            "name": "MegaMenu Details",
+            "description": "Object of complete static",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/MegaMenu"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Json for update mega menu",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/mega-menu/": {
+      "get": {
+        "tags": [
+          "Get mega menu list"
+        ],
+        "summary": "Get mega menus for BFL",
+        "operationId": "mega-menu",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "storeId",
+            "description": "Store id for mega menu list",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "countryId",
+            "description": "Country id of mega menu list",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "language",
+            "description": "language type of mega menu list, for now possible values are (english or arabic)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/need-help": {
+      "get": {
+        "tags": [
+          "Get need help"
+        ],
+        "summary": "Get need help for BFL",
+        "operationId": "nneed-help",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "countryId",
+            "description": "Country id of need help",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Config": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "number"
+        },
+        "countryId": {
+          "type": "number"
+        },
+        "topBannerContent": {
+          "type": "object"
+        },
+        "uspContent": {
+          "type": "object"
+        },
+        "shopByStore": {
+          "type": "object"
+        },
+        "newestArrival": {
+          "type": "object"
+        },
+        "topCategories": {
+          "type": "object"
+        },
+        "shopByBrands": {
+          "type": "object"
+        }
+      }
+    },
+    "Catalog": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "number"
+        },
+        "countryId": {
+          "type": "number"
+        },
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "pageType": {
+          "type": "string"
+        },
+        "content": {
+          "type": "object"
+        },
+        "seo": {
+          "type": "object"
+        }
+      }
+    },
+    "Static": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "number"
+        },
+        "countryId": {
+          "type": "number"
+        },
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "pageType": {
+          "type": "string"
+        },
+        "content": {
+          "type": "object"
+        },
+        "meta": {
+          "type": "object"
+        }
+      }
+    },
+    "MegaMenu": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "number"
+        },
+        "countryId": {
+          "type": "number"
+        },
+        "english": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "headerTitle": {
+                "type": "string"
+              },
+              "imgUrl": {
+                "type": "string"
+              },
+              "categoryImgUrl": {
+                "type": "string"
+              },
+              "redirectUrl": {
+                "type": "string"
+              },
+              "pos": {
+                "type": "number"
+              },
+              "col1": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col2": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col3": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col4": {
+                "type": "object"
+              },
+              "col5": {
+                "type": "object"
+              },
+              "col6": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "arabic": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "headerTitle": {
+                "type": "string"
+              },
+              "imgUrl": {
+                "type": "string"
+              },
+              "categoryImgUrl": {
+                "type": "string"
+              },
+              "redirectUrl": {
+                "type": "string"
+              },
+              "pos": {
+                "type": "number"
+              },
+              "col1": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col2": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col3": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "col4": {
+                "type": "object"
+              },
+              "col5": {
+                "type": "object"
+              },
+              "col6": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
